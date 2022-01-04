@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CryptoApp</string>
+    <string name="label_time_of_last_update">Time of last update:</string>
+    <string name="description_coin_image">Coin image</string>
+    <string name="symbol_delimiter" translatable="false">/</string>
+    <string name="label_price">Price:</string>
+    <string name="label_min_price">Minimum per day:</string>
+    <string name="label_max_price">Maximum per day:</string>
+    <string name="label_last_market">Last deal:</string>
+    <string name="label_last_update">Updated:</string>
+</resources>

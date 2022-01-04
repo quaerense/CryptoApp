@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CryptoApp</string>
+    <string name="label_time_of_last_update">Время последнего обноления:</string>
+    <string name="description_coin_image">Изображение валюты</string>
+    <string name="label_price">Цена:</string>
+    <string name="label_min_price">Минимум за день:</string>
+    <string name="label_max_price">Максимум за день:</string>
+    <string name="label_last_market">Последняя сделка:</string>
+    <string name="label_last_update">Обновлено:</string>
+</resources>
