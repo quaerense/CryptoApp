@@ -2,8 +2,6 @@ package org.quaerense.cryptoapp.presentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 import org.quaerense.cryptoapp.data.repository.CoinRepositoryImpl
 import org.quaerense.cryptoapp.domain.GetCoinInfoListUseCase
 import org.quaerense.cryptoapp.domain.GetCoinInfoUseCase
@@ -22,8 +20,6 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     fun getDetailInfo(fSym: String) = getCoinInfoUseCase(fSym)
 
     init {
-        viewModelScope.launch {
-            loadDataUseCase()
-        }
+        loadDataUseCase()
     }
 }
