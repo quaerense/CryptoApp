@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import org.quaerense.cryptoapp.presentation.adapters.CoinInfoAdapter
 import org.quaerense.cryptoapp.databinding.ActivityCoinPriceListBinding
-import org.quaerense.cryptoapp.data.model.CoinPriceInfo
+import org.quaerense.cryptoapp.data.network.model.CoinInfoDto
 
 class CoinPriceListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoinPriceListBinding
@@ -18,7 +18,7 @@ class CoinPriceListActivity : AppCompatActivity() {
 
         val adapter = CoinInfoAdapter()
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
-            override fun onClick(coin: CoinPriceInfo) {
+            override fun onClick(coin: CoinInfoDto) {
                 val intent =
                     CoinDetailActivity.newIntent(this@CoinPriceListActivity, coin.fromSymbol)
                 startActivity(intent)

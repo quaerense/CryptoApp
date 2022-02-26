@@ -1,14 +1,11 @@
-package org.quaerense.cryptoapp.data.model
+package org.quaerense.cryptoapp.data.network.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
-@Entity(tableName = "full_price_list")
-data class CoinPriceInfo(
+data class CoinInfoDto(
     @SerializedName("TYPE")
     @Expose
     var type: String? = null,
@@ -17,7 +14,6 @@ data class CoinPriceInfo(
     @Expose
     var market: String? = null,
 
-    @PrimaryKey
     @SerializedName("FROMSYMBOL")
     @Expose
     var fromSymbol: String,
@@ -32,7 +28,7 @@ data class CoinPriceInfo(
 
     @SerializedName("PRICE")
     @Expose
-    var price: Double? = null,
+    var price: String? = null,
 
     @SerializedName("LASTUPDATE")
     @Expose
@@ -76,11 +72,11 @@ data class CoinPriceInfo(
 
     @SerializedName("HIGHDAY")
     @Expose
-    var highDay: Double? = null,
+    var highDay: String? = null,
 
     @SerializedName("LOWDAY")
     @Expose
-    var lowDay: Double? = null,
+    var lowDay: String? = null,
 
     @SerializedName("OPEN24HOUR")
     @Expose

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.quaerense.cryptoapp.R
-import org.quaerense.cryptoapp.data.model.CoinPriceInfo
+import org.quaerense.cryptoapp.data.network.model.CoinInfoDto
 
 class CoinInfoAdapter :
     RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
@@ -16,10 +16,10 @@ class CoinInfoAdapter :
     var onCoinClickListener: OnCoinClickListener? = null
 
     interface OnCoinClickListener {
-        fun onClick(coin: CoinPriceInfo)
+        fun onClick(coin: CoinInfoDto)
     }
 
-    var coins: List<CoinPriceInfo> = ArrayList()
+    var coins: List<CoinInfoDto> = ArrayList()
         set(value) {
             field = value
             notifyDataSetChanged()
