@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
+import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import org.quaerense.cryptoapp.databinding.ActivityCoinDetailBinding
+import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
 class CoinDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoinDetailBinding
@@ -21,29 +23,27 @@ class CoinDetailActivity : AppCompatActivity() {
             finish()
             return
         }
-        val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL)
 
-        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-            .create(CoinViewModel::class.java)
-
-        if (fromSymbol != null) {
-            viewModel.getDetailInfo(fromSymbol).observe(this) {
-                with(binding) {
-                    tvFromSymbol.text = it.fromSymbol
-                    tvToSymbol.text = it.toSymbol
-                    tvPrice.text = it.price.toString()
-                    tvMinPrice.text = it.low24Hour.toString()
-                    tvMaxPrice.text = it.high24Hour.toString()
-                    tvLastMarket.text = it.lastMarket
-                    tvLastUpdate.text = it.getFormattedTime()
-                    Picasso.get().load(it.getFullImageUrl()).into(ivLogoCoin)
-                }
+        val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: EMPTY_SYMBOL
+        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+        viewModel.getDetailInfo(fromSymbol).observe(this) {
+            with(binding) {
+                tvFromSymbol.text = it.fromSymbol
+                tvToSymbol.text = it.toSymbol
+                tvPrice.text = it.price.toString()
+                tvMinPrice.text = it.lowDay
+                tvMaxPrice.text = it.highDay
+                tvLastMarket.text = it.lastMarket
+                tvLastUpdate.text = convertTimestampToTime(it.lastUpdate)
+                Picasso.get().load(BASE_IMAGE_URL + it.imageUrl).into(ivLogoCoin)
             }
         }
     }
 
     companion object {
+
         private const val EXTRA_FROM_SYMBOL = "fSym"
+        private const val EMPTY_SYMBOL = ""
 
         fun newIntent(context: Context, fromSymbol: String): Intent {
             val intent = Intent(context, CoinDetailActivity::class.java)

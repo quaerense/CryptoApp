@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.quaerense.cryptoapp.R
-import org.quaerense.cryptoapp.data.network.model.CoinInfoDto
+import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
+import org.quaerense.cryptoapp.domain.CoinInfo
+import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
 class CoinInfoAdapter :
     RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
@@ -16,10 +18,10 @@ class CoinInfoAdapter :
     var onCoinClickListener: OnCoinClickListener? = null
 
     interface OnCoinClickListener {
-        fun onClick(coin: CoinInfoDto)
+        fun onClick(coin: CoinInfo)
     }
 
-    var coins: List<CoinInfoDto> = ArrayList()
+    var coins: List<CoinInfo> = ArrayList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -37,13 +39,15 @@ class CoinInfoAdapter :
         val symbols = "${coin.fromSymbol} / ${coin.toSymbol}"
 
         with(holder) {
-            Picasso.get().load(coin.getFullImageUrl()).into(ivLogoCoin)
-            tvSymbols.text = symbols
-            tvPrice.text = coin.price.toString()
-            tvLastUpdate.text = coin.getFormattedTime()
+            with(coin) {
+                Picasso.get().load(BASE_IMAGE_URL + imageUrl).into(ivLogoCoin)
+                tvSymbols.text = symbols
+                tvPrice.text = price.toString()
+                tvLastUpdate.text = convertTimestampToTime(lastUpdate)
 
-            itemView.setOnClickListener {
-                onCoinClickListener?.onClick(coin)
+                itemView.setOnClickListener {
+                    onCoinClickListener?.onClick(this)
+                }
             }
         }
     }

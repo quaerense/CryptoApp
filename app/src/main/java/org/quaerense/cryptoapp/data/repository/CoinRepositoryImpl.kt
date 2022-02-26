@@ -10,7 +10,7 @@ import org.quaerense.cryptoapp.data.network.ApiFactory
 import org.quaerense.cryptoapp.domain.CoinInfo
 import org.quaerense.cryptoapp.domain.CoinRepository
 
-class CoinRepositoryImpl(private val application: Application) : CoinRepository {
+class CoinRepositoryImpl(application: Application) : CoinRepository {
 
     private val coinInfoDao = AppDatabase.getInstance(application).coinPriceInfoDao()
     private val apiService = ApiFactory.apiService
@@ -33,14 +33,17 @@ class CoinRepositoryImpl(private val application: Application) : CoinRepository 
 
     override suspend fun loadData() {
         while (true) {
-            val topCoins = apiService.getTopCoinsInfo(limit = COIN_LIMIT)
-            val fromSymbols = mapper.mapNamesListToString(topCoins)
-            val jsonContainer = apiService.getFullPriceList(fSyms = fromSymbols)
-            val coinInfoDtoList = mapper.mapJsonContainerToListCoinInfo(jsonContainer)
-            val dbModelList = coinInfoDtoList.map {
-                mapper.mapDtoToDbModel(it)
+            try {
+                val topCoins = apiService.getTopCoinsInfo(limit = COIN_LIMIT)
+                val fromSymbols = mapper.mapNamesListToString(topCoins)
+                val jsonContainer = apiService.getFullPriceList(fSyms = fromSymbols)
+                val coinInfoDtoList = mapper.mapJsonContainerToListCoinInfo(jsonContainer)
+                val dbModelList = coinInfoDtoList.map {
+                    mapper.mapDtoToDbModel(it)
+                }
+                coinInfoDao.insertPriceList(dbModelList)
+            } catch (e: Exception) {
             }
-            coinInfoDao.insertPriceList(dbModelList)
             delay(DELAY_MILLIS)
         }
     }
