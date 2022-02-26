@@ -11,10 +11,6 @@ class CoinInfoAdapter : ListAdapter<CoinInfo, CoinInfoViewHolder>(CoinInfoDiffCa
 
     var onCoinClickListener: OnCoinClickListener? = null
 
-    interface OnCoinClickListener {
-        fun onClick(coin: CoinInfo)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
         val binding = ItemCoinInfoBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -41,5 +37,9 @@ class CoinInfoAdapter : ListAdapter<CoinInfo, CoinInfoViewHolder>(CoinInfoDiffCa
                 }
             }
         }
+    }
+
+    interface OnCoinClickListener {
+        fun onClick(coin: CoinInfo)
     }
 }
