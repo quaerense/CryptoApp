@@ -1,4 +1,4 @@
-package org.quaerense.cryptoapp
+package org.quaerense.cryptoapp.presentation
 
 import android.app.Application
 import android.util.Log
@@ -7,10 +7,10 @@ import androidx.lifecycle.LiveData
 import com.google.gson.Gson
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.quaerense.cryptoapp.api.ApiFactory
-import org.quaerense.cryptoapp.database.AppDatabase
-import org.quaerense.cryptoapp.pojo.CoinPriceInfo
-import org.quaerense.cryptoapp.pojo.CoinPriceInfoRawData
+import org.quaerense.cryptoapp.data.network.ApiFactory
+import org.quaerense.cryptoapp.data.database.AppDatabase
+import org.quaerense.cryptoapp.data.model.CoinPriceInfo
+import org.quaerense.cryptoapp.data.model.CoinPriceInfoRawData
 import java.util.concurrent.TimeUnit
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {

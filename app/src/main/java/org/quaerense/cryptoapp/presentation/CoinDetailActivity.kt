@@ -1,4 +1,4 @@
-package org.quaerense.cryptoapp
+package org.quaerense.cryptoapp.presentation
 
 import android.content.Context
 import android.content.Intent
@@ -27,7 +27,7 @@ class CoinDetailActivity : AppCompatActivity() {
             .create(CoinViewModel::class.java)
 
         if (fromSymbol != null) {
-            viewModel.getDetailInfo(fromSymbol).observe(this, {
+            viewModel.getDetailInfo(fromSymbol).observe(this) {
                 with(binding) {
                     tvFromSymbol.text = it.fromSymbol
                     tvToSymbol.text = it.toSymbol
@@ -38,7 +38,7 @@ class CoinDetailActivity : AppCompatActivity() {
                     tvLastUpdate.text = it.getFormattedTime()
                     Picasso.get().load(it.getFullImageUrl()).into(ivLogoCoin)
                 }
-            })
+            }
         }
     }
 

@@ -1,11 +1,11 @@
-package org.quaerense.cryptoapp
+package org.quaerense.cryptoapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import org.quaerense.cryptoapp.adapters.CoinInfoAdapter
+import org.quaerense.cryptoapp.presentation.adapters.CoinInfoAdapter
 import org.quaerense.cryptoapp.databinding.ActivityCoinPriceListBinding
-import org.quaerense.cryptoapp.pojo.CoinPriceInfo
+import org.quaerense.cryptoapp.data.model.CoinPriceInfo
 
 class CoinPriceListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoinPriceListBinding

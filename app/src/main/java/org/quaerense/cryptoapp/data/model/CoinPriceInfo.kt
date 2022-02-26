@@ -1,10 +1,10 @@
-package org.quaerense.cryptoapp.pojo
+package org.quaerense.cryptoapp.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import org.quaerense.cryptoapp.api.ApiFactory.BASE_IMAGE_URL
+import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
 @Entity(tableName = "full_price_list")

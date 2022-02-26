@@ -1,10 +1,10 @@
-package org.quaerense.cryptoapp.database
+package org.quaerense.cryptoapp.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import org.quaerense.cryptoapp.pojo.CoinPriceInfo
+import org.quaerense.cryptoapp.data.model.CoinPriceInfo
 
 @Database(entities = [CoinPriceInfo::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

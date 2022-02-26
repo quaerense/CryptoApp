@@ -1,4 +1,4 @@
-package org.quaerense.cryptoapp.pojo
+package org.quaerense.cryptoapp.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

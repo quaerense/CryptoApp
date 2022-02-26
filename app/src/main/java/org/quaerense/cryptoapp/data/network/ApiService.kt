@@ -1,8 +1,8 @@
-package org.quaerense.cryptoapp.api
+package org.quaerense.cryptoapp.data.network
 
 import io.reactivex.rxjava3.core.Single
-import org.quaerense.cryptoapp.pojo.CoinInfoListOfData
-import org.quaerense.cryptoapp.pojo.CoinPriceInfoRawData
+import org.quaerense.cryptoapp.data.model.CoinInfoListOfData
+import org.quaerense.cryptoapp.data.model.CoinPriceInfoRawData
 import retrofit2.http.GET
 import retrofit2.http.Query
 

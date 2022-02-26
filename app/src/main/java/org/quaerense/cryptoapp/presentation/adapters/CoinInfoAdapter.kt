@@ -1,4 +1,4 @@
-package org.quaerense.cryptoapp.adapters
+package org.quaerense.cryptoapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.quaerense.cryptoapp.R
-import org.quaerense.cryptoapp.pojo.CoinPriceInfo
+import org.quaerense.cryptoapp.data.model.CoinPriceInfo
 
 class CoinInfoAdapter :
     RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {

@@ -1,11 +1,11 @@
-package org.quaerense.cryptoapp.database
+package org.quaerense.cryptoapp.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import org.quaerense.cryptoapp.pojo.CoinPriceInfo
+import org.quaerense.cryptoapp.data.model.CoinPriceInfo
 
 @Dao
 interface CoinPriceInfoDao {
