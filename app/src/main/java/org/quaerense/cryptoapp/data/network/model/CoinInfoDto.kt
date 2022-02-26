@@ -2,8 +2,6 @@ package org.quaerense.cryptoapp.data.network.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
-import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
 data class CoinInfoDto(
     @SerializedName("TYPE")
@@ -193,12 +191,4 @@ data class CoinInfoDto(
     @SerializedName("IMAGEURL")
     @Expose
     var imageUrl: String? = null,
-) {
-    fun getFormattedTime(): String {
-        return convertTimestampToTime(lastUpdate)
-    }
-
-    fun getFullImageUrl(): String {
-        return BASE_IMAGE_URL + imageUrl
-    }
-}
+)

@@ -6,9 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
-import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import org.quaerense.cryptoapp.databinding.ActivityCoinDetailBinding
-import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
 class CoinDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoinDetailBinding
@@ -34,8 +32,8 @@ class CoinDetailActivity : AppCompatActivity() {
                 tvMinPrice.text = it.lowDay
                 tvMaxPrice.text = it.highDay
                 tvLastMarket.text = it.lastMarket
-                tvLastUpdate.text = convertTimestampToTime(it.lastUpdate)
-                Picasso.get().load(BASE_IMAGE_URL + it.imageUrl).into(ivLogoCoin)
+                tvLastUpdate.text = it.lastUpdate
+                Picasso.get().load(it.imageUrl).into(ivLogoCoin)
             }
         }
     }

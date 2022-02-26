@@ -8,9 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.quaerense.cryptoapp.R
-import org.quaerense.cryptoapp.data.network.ApiFactory.BASE_IMAGE_URL
 import org.quaerense.cryptoapp.domain.CoinInfo
-import org.quaerense.cryptoapp.utils.convertTimestampToTime
 
 class CoinInfoAdapter :
     RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
@@ -40,10 +38,10 @@ class CoinInfoAdapter :
 
         with(holder) {
             with(coin) {
-                Picasso.get().load(BASE_IMAGE_URL + imageUrl).into(ivLogoCoin)
+                Picasso.get().load(imageUrl).into(ivLogoCoin)
                 tvSymbols.text = symbols
                 tvPrice.text = price.toString()
-                tvLastUpdate.text = convertTimestampToTime(lastUpdate)
+                tvLastUpdate.text = lastUpdate
 
                 itemView.setOnClickListener {
                     onCoinClickListener?.onClick(this)
