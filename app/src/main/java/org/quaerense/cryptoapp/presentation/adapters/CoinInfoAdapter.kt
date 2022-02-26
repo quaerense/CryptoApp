@@ -2,24 +2,18 @@ package org.quaerense.cryptoapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.squareup.picasso.Picasso
 import org.quaerense.cryptoapp.databinding.ItemCoinInfoBinding
 import org.quaerense.cryptoapp.domain.CoinInfo
 
-class CoinInfoAdapter : RecyclerView.Adapter<CoinInfoViewHolder>() {
+class CoinInfoAdapter : ListAdapter<CoinInfo, CoinInfoViewHolder>(CoinInfoDiffCallback) {
 
     var onCoinClickListener: OnCoinClickListener? = null
 
     interface OnCoinClickListener {
         fun onClick(coin: CoinInfo)
     }
-
-    var coins: List<CoinInfo> = ArrayList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
         val binding = ItemCoinInfoBinding.inflate(
@@ -32,7 +26,7 @@ class CoinInfoAdapter : RecyclerView.Adapter<CoinInfoViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CoinInfoViewHolder, position: Int) {
-        val coin = coins[position]
+        val coin = getItem(position)
         val symbols = "${coin.fromSymbol} / ${coin.toSymbol}"
 
         with(holder.binding) {
@@ -48,6 +42,4 @@ class CoinInfoAdapter : RecyclerView.Adapter<CoinInfoViewHolder>() {
             }
         }
     }
-
-    override fun getItemCount() = coins.size
 }
