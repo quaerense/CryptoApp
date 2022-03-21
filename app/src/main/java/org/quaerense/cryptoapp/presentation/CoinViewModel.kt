@@ -1,19 +1,16 @@
 package org.quaerense.cryptoapp.presentation
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import org.quaerense.cryptoapp.data.repository.CoinRepositoryImpl
+import androidx.lifecycle.ViewModel
 import org.quaerense.cryptoapp.domain.GetCoinInfoListUseCase
 import org.quaerense.cryptoapp.domain.GetCoinInfoUseCase
 import org.quaerense.cryptoapp.domain.LoadDataUseCase
+import javax.inject.Inject
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = CoinRepositoryImpl(application)
-
-    private val getCoinInfoListUseCase = GetCoinInfoListUseCase(repository)
-    private val getCoinInfoUseCase = GetCoinInfoUseCase(repository)
-    private val loadDataUseCase = LoadDataUseCase(repository)
+class CoinViewModel @Inject constructor(
+    loadDataUseCase: LoadDataUseCase,
+    getCoinInfoListUseCase: GetCoinInfoListUseCase,
+    private val getCoinInfoUseCase: GetCoinInfoUseCase
+) : ViewModel() {
 
     val coinInfoList = getCoinInfoListUseCase()
 

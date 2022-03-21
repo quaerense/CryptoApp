@@ -2,20 +2,32 @@ package org.quaerense.cryptoapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import org.quaerense.cryptoapp.R
 import org.quaerense.cryptoapp.databinding.ActivityCoinPriceListBinding
 import org.quaerense.cryptoapp.domain.CoinInfo
 import org.quaerense.cryptoapp.presentation.adapters.CoinInfoAdapter
+import javax.inject.Inject
 
 class CoinPriceListActivity : AppCompatActivity() {
-    private lateinit var viewModel: CoinViewModel
 
     private val binding by lazy {
         ActivityCoinPriceListBinding.inflate(layoutInflater)
     }
 
+    @Inject
+    lateinit var viewModelFactory: CoinViewModelFactory
+
+    private val viewModel by lazy {
+        viewModelFactory.create(CoinViewModel::class.java)
+    }
+
+    private val component by lazy {
+        (application as CoinApp).component
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -33,7 +45,6 @@ class CoinPriceListActivity : AppCompatActivity() {
         binding.rvCoinPriceList.adapter = adapter
         binding.rvCoinPriceList.itemAnimator = null
 
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
         viewModel.coinInfoList.observe(this) {
             adapter.submitList(it)
         }

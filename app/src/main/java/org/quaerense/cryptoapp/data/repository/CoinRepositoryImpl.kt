@@ -6,16 +6,18 @@ import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import org.quaerense.cryptoapp.data.database.AppDatabase
+import org.quaerense.cryptoapp.data.database.CoinInfoDao
 import org.quaerense.cryptoapp.data.mapper.CoinMapper
 import org.quaerense.cryptoapp.data.worker.RefreshDataWorker
 import org.quaerense.cryptoapp.domain.CoinInfo
 import org.quaerense.cryptoapp.domain.CoinRepository
+import javax.inject.Inject
 
-class CoinRepositoryImpl(private val application: Application) : CoinRepository {
-
-    private val coinInfoDao = AppDatabase.getInstance(application).coinPriceInfoDao()
-
-    private val mapper = CoinMapper()
+class CoinRepositoryImpl @Inject constructor(
+    private val mapper: CoinMapper,
+    private val coinInfoDao: CoinInfoDao,
+    private val application: Application
+    ) : CoinRepository {
 
     override fun getCoinInfoList(): LiveData<List<CoinInfo>> {
         return Transformations.map(coinInfoDao.getPriceList()) { coinInfoDbModels ->
