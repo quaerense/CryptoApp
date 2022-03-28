@@ -22,7 +22,7 @@ class CoinPriceListActivity : AppCompatActivity() {
     }
 
     private val component by lazy {
-        (application as CoinApp).component
+        (application as CoinApplication).component
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

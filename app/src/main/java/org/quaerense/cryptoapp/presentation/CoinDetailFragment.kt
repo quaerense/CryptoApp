@@ -24,7 +24,7 @@ class CoinDetailFragment : Fragment() {
     }
 
     private val component by lazy {
-        (requireActivity().application as CoinApp).component
+        (requireActivity().application as CoinApplication).component
     }
 
     override fun onAttach(context: Context) {
